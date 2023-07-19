@@ -11,6 +11,8 @@ import easyocr
 filename = askopenfilename(title='Choose a file')
 """
 
+defont = "'Monsterrat', 12 "
+
 def listreturn(filename):
     foldername = filename[25:-4].replace(" ","")
     print(foldername)
@@ -54,28 +56,30 @@ column_layout = [
 
 def new1():
     return [
-        [psg.Text("All files are extracted!")],
-        [psg.Text("Getting text from first image...")]
+        [psg.Text("All files are extracted!", font=(defont))],
+        [psg.Text("Getting text from first image...", font=(defont))]
     ]
 
 def new3():
     return [
-        [psg.Text("PDF has been created!")]
+        [psg.Text("PDF has been created!", font=(defont))]
     ]
 
 def new2():
     return [
-        [psg.T("1st page of pdf is: "+life+"' \nWhat should file name be?\n")],
-        [psg.Input(enable_events=True, key='-INP-')],
+        [psg.T("1st page of pdf is: "+life+"' \nWhat should file name be?\n", font=(defont))],
+        [psg.Input(enable_events=True, key='-INP-', font=(defont))],
         [psg.Submit()]
     ]
 
+psg.theme('DarkTeal6')
+
 layout = [
-   [psg.Text('Select a file',font=('monsterrat', 20), expand_x=True, justification='center')],
-   [psg.Input(enable_events=True, key='-IN-',font=('monsterrat', 12),expand_x=True), psg.FileBrowse()],
-   [psg.Button("Do the thing")],
-   [psg.Column(column_layout, key='-Column-')],
-   [psg.Button("Exit")]
+   [psg.Text('Select a file',font = (defont), expand_x=True, justification='center')],
+   [psg.Input(enable_events=True, key='-IN-', font=(defont), expand_x=True), psg.FileBrowse()],
+   [psg.Button("Convert to PDF", font=(defont))],
+   [psg.Column(column_layout, key='-Column-', font=(defont))],
+   [psg.Button("Exit", font=(defont))]
 ]
 
 
@@ -84,7 +88,7 @@ size=(715,800))
 while True:
    event, values = window.read()
 
-   if event == 'Do the thing':
+   if event == 'Convert to PDF':
       filename = values["-IN-"]
       imglist = listreturn(filename)
       life = reader(imglist)
