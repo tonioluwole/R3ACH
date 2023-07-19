@@ -7,10 +7,6 @@ import PySimpleGUI as psg
 import glob
 import easyocr
 
-"""
-filename = askopenfilename(title='Choose a file')
-"""
-
 defont = "'Monsterrat', 12 "
 
 def listreturn(filename):
